@@ -1,12 +1,12 @@
 // Firebase 設定
 // ※新しい Firebase プロジェクトの設定値に置き換えてください
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_PROJECT.firebasestorage.app",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDS2d02HUck9YyxWoX1WOQscyOr54DwyNQ",
+  authDomain: "appsforschool-convenient.firebaseapp.com",
+  projectId: "appsforschool-convenient",
+  storageBucket: "appsforschool-convenient.firebasestorage.app",
+  messagingSenderId: "1062735089267",
+  appId: "1:1062735089267:web:ff185e6806c16b79f96406"
 };
 
 // ログイン時にIDへ付与するドメイン
