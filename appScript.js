@@ -12,8 +12,9 @@ const firebaseConfig = {
 const AUTH_EMAIL_DOMAIN = "@chorus-appsforschool.com";
 
 // 曲データを保存している Firestore コレクション名
-// (仮) 各ドキュメントIDが chorus/songs/(曲ごとのid)/ のフォルダ名と対応する想定
-const SONGS_COLLECTION = "songs";
+// ドキュメントID（曲ごとのid）が chorus/songs/(曲ごとのid)/ の
+// Storage フォルダ名と対応する想定
+const SONGS_COLLECTION = "chorus";
 
 // このパターンに一致するID(例: 3-1)は「クラスアカウント」として扱う。
 // 一致しないID(例: admin, teacher)は「特別なアカウント」として全曲を表示する。
