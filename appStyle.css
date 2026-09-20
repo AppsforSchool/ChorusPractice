@@ -1,0 +1,254 @@
+:root {
+  --primary: #5B6EE1;
+  --primary-rgb: 91, 110, 225;
+  --primary-dark: #3f4fc0;
+  --primary-soft: #eceffd;
+
+  --bg: #eef1f5;
+  --surface: #ffffff;
+  --surface-alt: #f6f8fa;
+  --text: #24303d;
+  --text-muted: #7c8794;
+  --border: #e6e9ee;
+
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-full: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(20, 30, 40, 0.06);
+  --shadow-md: 0 6px 20px rgba(20, 30, 40, 0.08);
+  --shadow-lg: 0 16px 40px rgba(20, 30, 40, 0.14);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+html {
+  font-size: 16px;
+}
+body {
+  font-family: "BIZ UDGothic", sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1;
+  padding: 1.5rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 20, 26, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+#loading-overlay h1 {
+  font-size: 2.6rem;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+#loading-overlay p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+#app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1.2rem;
+  background-color: var(--surface);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+#header-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+#setting-button {
+  font-family: "BIZ UDGothic", sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  background-color: var(--primary-soft);
+  color: var(--primary-dark);
+  border: none;
+  border-radius: var(--radius-full);
+  transition: background-color 0.2s var(--ease);
+}
+#setting-button:hover {
+  background-color: rgba(var(--primary-rgb), 0.22);
+}
+
+.books-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.books-container > .title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+#loading-text,
+#empty-text {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.card-area {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.song-card {
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s var(--ease), transform 0.15s var(--ease);
+}
+.song-card:hover {
+  box-shadow: var(--shadow-md);
+}
+.song-card:active {
+  transform: scale(0.98);
+}
+.song-card .song-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+/* --- アカウント設定ドロワー --- */
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 20, 26, 0.55);
+  backdrop-filter: blur(3px);
+  z-index: 900;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s var(--ease);
+}
+.drawer-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 340px;
+  height: 100%;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  z-index: 950;
+  transform: translateX(100%);
+  transition: transform 0.25s var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+.drawer.open {
+  transform: translateX(0);
+}
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.drawer-header p {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.drawer-close-button {
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s var(--ease);
+}
+.drawer-close-button:hover {
+  background-color: var(--surface-alt);
+}
+.drawer-content {
+  padding: 1.25rem;
+  overflow-y: auto;
+}
+.drawer-section .title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+.drawer-section p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.normal-button {
+  font-family: "BIZ UDGothic", sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  background-color: var(--surface-alt);
+  color: var(--text);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: background-color 0.2s var(--ease);
+}
+.normal-button:hover {
+  background-color: var(--border);
+}
+.logout-button {
+  color: #d64545;
+}

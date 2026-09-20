@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#5B6EE1">
+  <title>練習画面 | 合唱練習アプリ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="practiceStyle.css">
+
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+  <!-- 実際のサンプリング音源（ピアノ/コーラス）を鳴らすためのライブラリ -->
+  <script src="https://cdn.jsdelivr.net/npm/soundfont-player@0.12.0/dist/soundfont-player.min.js"></script>
+</head>
+
+<body>
+  <div id="loading-overlay">
+    <h1>loading...</h1>
+    <p id="loading-status-text">曲データを読み込んでいます｡</p>
+  </div>
+
+  <header id="app-header">
+    <button id="back-button" aria-label="戻る">&larr;</button>
+    <p id="header-title">読み込み中...</p>
+  </header>
+
+  <main id="practice-main" class="hidden">
+
+    <div class="panel transport-panel">
+      <div class="time-row">
+        <span id="current-time-text">0:00</span>
+        <span id="current-measure-text">小節 --</span>
+        <span id="total-time-text">0:00</span>
+      </div>
+      <input type="range" id="seek-bar" min="0" max="1000" value="0" step="1">
+
+      <div class="transport-buttons">
+        <button id="play-pause-button" class="play-pause-button">再生</button>
+      </div>
+
+      <div class="speed-row">
+        <span>テンポ</span>
+        <input type="range" id="speed-slider" min="50" max="110" value="100" step="5">
+        <span id="speed-value-text">100%</span>
+      </div>
+    </div>
+
+    <div id="section-jump-panel" class="panel section-jump-panel hidden">
+      <p class="panel-title">セクションへ移動</p>
+      <div id="section-jump-buttons" class="section-jump-buttons"></div>
+    </div>
+
+    <div class="panel parts-panel">
+      <p class="panel-title">パート音量</p>
+      <div id="parts-list" class="parts-list"></div>
+    </div>
+
+  </main>
+
+  <script type="module" src="practiceScript.js"></script>
+</body>
+</html>
